@@ -12,9 +12,7 @@ export default function SplineScene() {
       <Spline
         className="spline-canvas"
         scene={SCENE_URL}
-        onLoad={(spline) => {
-          const robot = spline.findObjectByName('Robot');
-          if (robot) robot.rotation.z += Math.PI;
+        onLoad={() => {
           setLoaded(true);
         }}
         aria-label="Interactive Mainframe 3D scene"

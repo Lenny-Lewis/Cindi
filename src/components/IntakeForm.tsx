@@ -2,7 +2,11 @@ import { useRef, useState, type DragEvent, type FormEvent } from 'react';
 
 const EMAIL = 'hello@mainframe.co';
 
-export default function IntakeForm() {
+type IntakeFormProps = {
+  variant?: 'landing' | 'page';
+};
+
+export default function IntakeForm({ variant = 'landing' }: IntakeFormProps) {
   const fileInputRef = useRef<HTMLInputElement>(null);
   const [project, setProject] = useState('');
   const [files, setFiles] = useState<File[]>([]);
@@ -30,16 +34,23 @@ export default function IntakeForm() {
   };
 
   return (
-    <section id="intake" aria-labelledby="intake-heading" className="intake-section relative z-[1] px-5 py-20 sm:px-8 sm:py-28 md:px-10">
+    <section
+      id="intake"
+      aria-labelledby="intake-heading"
+      data-scroll-section
+      data-scroll={variant === 'page' ? '' : undefined}
+      data-scroll-class={variant === 'page' ? 'is-inview' : undefined}
+      className={`intake-section relative z-[1] px-5 py-20 sm:px-8 sm:py-28 md:px-10 ${variant === 'page' ? 'cindi-contact-intake' : ''}`}
+    >
       <div className="mx-auto max-w-5xl">
         <div className="mb-12 grid gap-5 sm:mb-16 sm:grid-cols-[1fr_auto] sm:items-end">
           <div>
-            <p data-scroll data-scroll-speed="-0.2" className="mb-4 text-sm uppercase tracking-[0.14em] text-black/55">A good place to start</p>
+            <p data-scroll data-scroll-speed="-0.2" className="mb-4 text-sm uppercase tracking-[0.14em] text-black/55">{variant === 'page' ? 'Talk with our team' : 'A good place to start'}</p>
             <h2 id="intake-heading" data-scroll data-scroll-speed="-0.1" className="max-w-3xl text-4xl leading-[1.05] tracking-tight sm:text-6xl md:text-7xl">
-              Tell us what you&apos;re thinking.
+              {variant === 'page' ? 'Tell us what you need.' : 'Tell us what you\'re thinking.'}
             </h2>
           </div>
-          <p className="max-w-xs text-base leading-relaxed text-black/65 sm:text-lg">A little context goes a long way. We&apos;ll take it from here.</p>
+          <p className="max-w-xs text-base leading-relaxed text-black/65 sm:text-lg">{variant === 'page' ? 'Share a question, a use case, or a little about your team. We’ll follow up with a clear next step.' : 'A little context goes a long way. We\'ll take it from here.'}</p>
         </div>
 
         <form onSubmit={handleSubmit} className="border-t border-black/20">
