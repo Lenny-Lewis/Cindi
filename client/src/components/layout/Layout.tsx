@@ -152,11 +152,11 @@ export default function Layout() {
 
   return (
     <div className={`cindi-site${isBooting ? ' cindi-site--booting' : ''}`} data-scroll-container>
-      <SiteNavigation />
-      <div className="cindi-route-content" style={{ paddingTop: location.pathname === '/' || location.pathname === '/talk' ? 0 : '5rem' }}>
+      {location.pathname !== '/chat' && <SiteNavigation />}
+      <div className="cindi-route-content" style={{ paddingTop: location.pathname === '/' || location.pathname === '/talk' || location.pathname === '/chat' ? 0 : '5rem' }}>
         <Outlet />
       </div>
-      {location.pathname !== '/talk' && <SiteFooter />}
+      {location.pathname !== '/talk' && location.pathname !== '/chat' && <SiteFooter />}
       <KineticTypographyLoader shouldPlay={shouldPlayBoot} onComplete={() => setIsBooting(false)} />
     </div>
   );
