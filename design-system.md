@@ -2,7 +2,7 @@
 
 This document defines the visual and interaction foundation for Cindi, an agentic assistant for personal and business work. Cindi should feel capable, calm, and trustworthy: clear about what it is doing, careful around consequential actions, and never theatrical.
 
-The token and component layer lives in `src/index.css`. It is namespaced with `cindi-` and is opt-in. Existing Mainframe landing-page styles and the Spline scene have not been restyled as part of this pass.
+The token and component layer lives in `client/src/index.css`. It is namespaced with `cindi-` and is opt-in. Existing Mainframe landing-page styles and the Spline scene have not been restyled as part of this pass.
 
 ## Brand foundations
 
@@ -13,7 +13,7 @@ The token and component layer lives in `src/index.css`. It is namespaced with `c
 
 ### Color tokens
 
-The complete values are CSS custom properties in `src/index.css`. The default theme is light. Apply `data-theme="dark"` or `class="dark"` to the document root to activate dark values; the same attributes can scope a dark region. Components consume semantic tokens so they change with the theme.
+The complete values are CSS custom properties in `client/src/index.css`. The default theme is light. Apply `data-theme="dark"` or `class="dark"` to the document root to activate dark values; the same attributes can scope a dark region. Components consume semantic tokens so they change with the theme.
 
 | Token role | Light | Dark |
 | --- | --- | --- |
