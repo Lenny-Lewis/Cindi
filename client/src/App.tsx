@@ -2,6 +2,7 @@ import { BrowserRouter, Link, Route, Routes } from 'react-router-dom';
 import Layout from './components/layout/Layout';
 import AboutPage from './pages/AboutPage';
 import ContactPage from './pages/ContactPage';
+import ChatPage from './pages/ChatPage';
 import HomePage from './pages/HomePage';
 import PricingPage from './pages/PricingPage';
 import ProductPage from './pages/ProductPage';
@@ -31,6 +32,7 @@ export default function App() {
           <Route path="security" element={<SecurityPage />} />
           <Route path="about" element={<AboutPage />} />
           <Route path="contact" element={<ContactPage />} />
+          <Route path="chat" element={<ChatPage />} />
           <Route path="talk" element={<TalkPage />} />
           <Route path="*" element={<NotFoundPage />} />
         </Route>

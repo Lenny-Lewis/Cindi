@@ -9,7 +9,7 @@ const navigation = [
   { label: 'Home', to: '/', end: true },
   { label: 'Product', to: '/product' },
   { label: 'Pricing', to: '/pricing' },
-  { label: 'Security', to: '/security' },
+  { label: 'Chat', to: '/chat' },
   { label: 'About', to: '/about' },
 ];
 
@@ -105,7 +105,7 @@ function SiteFooter() {
         </Link>
         <p className="cindi-type-small cindi-site-footer__note">A capable assistant. Clear about every action.</p>
         <nav className="cindi-footer-links" aria-label="Footer navigation">
-          <Link to="/security">Security</Link>
+          <Link to="/chat">Chat</Link>
           <Link to="/contact">Contact</Link>
         </nav>
       </div>
