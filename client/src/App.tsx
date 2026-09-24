@@ -6,6 +6,7 @@ import HomePage from './pages/HomePage';
 import PricingPage from './pages/PricingPage';
 import ProductPage from './pages/ProductPage';
 import SecurityPage from './pages/SecurityPage';
+import TalkPage from './pages/TalkPage';
 
 function NotFoundPage() {
   return (
@@ -30,6 +31,7 @@ export default function App() {
           <Route path="security" element={<SecurityPage />} />
           <Route path="about" element={<AboutPage />} />
           <Route path="contact" element={<ContactPage />} />
+          <Route path="talk" element={<TalkPage />} />
           <Route path="*" element={<NotFoundPage />} />
         </Route>
       </Routes>

@@ -801,6 +801,92 @@ button {
   font-family: var(--font-body);
 }
 
+.cindi-site--booting {
+  height: 100vh;
+  height: 100svh;
+  overflow: hidden;
+}
+
+.loader-container {
+  position: fixed;
+  z-index: 1000;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  overflow: hidden;
+  color: #ffffff;
+  background: #000000;
+  perspective: 800px;
+  transition: opacity 400ms ease;
+}
+
+.loader-container--exiting {
+  opacity: 0;
+  pointer-events: none;
+}
+
+.loader-container--reduced {
+  transition-duration: 180ms;
+}
+
+.loader-word {
+  display: flex;
+  margin: 0;
+  white-space: nowrap;
+  color: #ffffff;
+  font: 800 2.25rem / 1 var(--font-heading);
+  letter-spacing: -0.04em;
+  transform-style: preserve-3d;
+}
+
+@media (min-width: 40rem) {
+  .loader-word { font-size: 3.75rem; }
+}
+
+@media (min-width: 64rem) {
+  .loader-word { font-size: 6rem; }
+}
+
+.loader-word--reduced {
+  animation: loader-simple-fade 260ms ease both;
+}
+
+.char {
+  display: inline-block;
+  animation-name: fly-in, fly-out;
+  animation-duration: 360ms, 230ms;
+  animation-timing-function: cubic-bezier(0.2, 0.7, 0.2, 1), ease-in;
+  animation-fill-mode: both, both;
+  backface-visibility: hidden;
+}
+
+@keyframes fly-in {
+  from {
+    opacity: 0;
+    transform: var(--transform-from);
+  }
+  to {
+    opacity: 1;
+    transform: translateZ(0) rotateX(0) rotateY(0);
+  }
+}
+
+@keyframes fly-out {
+  from {
+    opacity: 1;
+    transform: translateZ(0) rotateX(0) rotateY(0);
+  }
+  to {
+    opacity: 0;
+    transform: var(--transform-to);
+  }
+}
+
+@keyframes loader-simple-fade {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
 .cindi-site-header {
   position: sticky;
   z-index: 30;
@@ -971,6 +1057,120 @@ button {
 .site-visual-placeholder__hint {
   font-size: var(--cindi-text-caption);
   line-height: var(--cindi-leading-caption);
+}
+
+.cindi-talk-section {
+  position: relative;
+  width: 100%;
+  height: 100vh;
+  height: 100svh;
+  overflow: hidden;
+}
+
+.cindi-talk-scene-frame {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  border: 0;
+  border-radius: 0;
+  background: var(--cindi-color-surface-raised);
+}
+
+.cindi-talk-spline {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+.cindi-talk-reduced-placeholder {
+  width: 100%;
+  height: 100%;
+  min-height: 100%;
+  border: 0;
+  border-radius: 0;
+}
+
+.cindi-talk-controls {
+  position: fixed;
+  z-index: 25;
+  top: 50%;
+  right: clamp(1rem, 3vw, 2rem);
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  transform: translateY(-50%);
+}
+
+.cindi-talk-control {
+  display: grid;
+  width: 3.25rem;
+  height: 3.25rem;
+  place-items: center;
+  border: 1px solid var(--cindi-color-primary);
+  border-radius: 50%;
+  cursor: pointer;
+  transition: color 220ms ease, background-color 220ms ease, border-color 220ms ease, transform 220ms ease;
+}
+
+.cindi-talk-control svg {
+  width: 1.35rem;
+  height: 1.35rem;
+}
+
+.cindi-talk-control.is-active {
+  color: var(--cindi-color-primary-foreground);
+  background: var(--cindi-color-primary);
+}
+
+.cindi-talk-control.is-muted {
+  color: var(--cindi-color-text);
+  background: var(--cindi-color-surface);
+}
+
+.cindi-talk-control:hover {
+  transform: scale(1.05);
+}
+
+.cindi-talk-control:focus-visible {
+  outline: 3px solid var(--cindi-color-focus);
+  outline-offset: 4px;
+}
+
+.cindi-talk-message {
+  position: absolute;
+  z-index: 2;
+  top: clamp(6rem, 12vh, 8rem);
+  left: clamp(1.25rem, 5vw, 4rem);
+  max-width: calc(100% - 7rem);
+  margin: 0;
+  color: var(--cindi-color-text);
+  font: 500 clamp(1.75rem, 4vw, 3rem) / 1.1 var(--font-heading);
+  letter-spacing: var(--cindi-tracking-h1);
+  opacity: 0;
+  transition: opacity 1.2s ease-in-out;
+  will-change: opacity;
+}
+
+.cindi-talk-message.is-inview {
+  opacity: 1;
+}
+
+.cindi-talk-cursor {
+  background: currentColor;
+}
+
+.cindi-talk-control--speaker.is-active {
+  border-color: #000000;
+  color: #ffffff;
+  background: #000000;
+}
+
+.cindi-talk-control--speaker.is-muted {
+  border-color: #000000;
+  color: #000000;
+  background: #ffffff;
 }
 
 .cindi-capability {
@@ -1348,5 +1548,10 @@ button {
   .cindi-page-orbit { display: none; }
   .cindi-contact-intake.is-inview { animation: none; }
   .cindi-mobile-nav,
-  .cindi-nav-toggle__bar { transition: none; }
+  .cindi-nav-toggle__bar,
+  .cindi-talk-control,
+  .cindi-talk-message { transition: none; }
+  .cindi-talk-control:hover { transform: none; }
+  .cindi-talk-message { opacity: 1; will-change: auto; }
+  .cindi-talk-cursor { animation: none; }
 }
